@@ -1,0 +1,22 @@
+@media (min-width: 768px) {
+    .aside {
+        height: 40rem;
+    }
+}
+
+.logo {
+    height: 43px;
+}
+
+.nav-item {
+    margin-right: 0.25rem;
+}
+
+.nav-link {
+    border-radius: .50rem;
+}
+
+.active {
+    border-radius: .50rem;
+    background-color: #0d6efd;
+}

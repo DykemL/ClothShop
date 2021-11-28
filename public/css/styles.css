@@ -1,0 +1,23 @@
+.hover-primary:hover {
+    background-color: #0d6efd;
+}
+
+.w-10 {
+    width: 10%;
+}
+
+.w-15 {
+    width: 15%;
+}
+
+.w-18 {
+    width: 18%;
+}
+
+.h-90 {
+    height: 90%;
+}
+
+.ml-2 {
+    margin-left: 0.5rem;
+}

@@ -1,0 +1,18 @@
+body {
+    min-height: 100vh;
+}
+
+.ico-action {
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.ico-action-red {
+    cursor: pointer;
+    text-decoration: none;
+    color: red;
+}
+
+.ico-action-red:hover {
+    color: red;
+}
