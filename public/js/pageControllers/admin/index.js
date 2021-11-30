@@ -1,19 +1,19 @@
 let updateProductButtons = document.getElementsByClassName('update-product');
+
 for (let button of updateProductButtons) {
-    button.onclick = () => {
+    button.onclick = async () => {
         let productId = button.dataset.productid;
         document.cookie = `productId=${productId}`;
         document.getElementById('modalTitle').innerText = "Изменение товара";
         document.getElementById('modalForm').setAttribute('action', '/admin/updateProduct');
-        getProduct(productId).then(product => {
-            document.getElementById('productId').value = productId;
-            document.getElementById('productName').value = product['name'];
-            document.getElementById('productTypeSelect').value = product['type'];
-            document.getElementById('productPrice').value = product['price'];
-            document.getElementById('productProperties').value = product['properties'];
-            document.getElementById('productDescription').value = product['description'];
-            document.getElementById('modalButton').innerText = 'Изменить';
-        });
+        let product = await getProduct(productId);
+        document.getElementById('productId').value = productId;
+        document.getElementById('productName').value = product['name'];
+        document.getElementById('productTypeSelect').value = product['type'];
+        document.getElementById('productPrice').value = product['price'];
+        document.getElementById('productProperties').value = product['properties'];
+        document.getElementById('productDescription').value = product['description'];
+        document.getElementById('modalButton').innerText = 'Изменить';
     }
 }
 
@@ -39,11 +39,10 @@ deleteProductButton.onclick = () => {
 async function getProduct(id) {
     const data = new FormData();
     data.append('productId', id);
-    return await fetch('/admin/getProduct', {
+    let response = await fetch('/admin/getProduct', {
         method: 'POST',
         body: data
-    }).then(response => {
-        return response.json();
-    });
+    })
+    return response.json();
 }
 

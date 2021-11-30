@@ -17,10 +17,13 @@ abstract class PageService
     ];
 
     public static function getPage($id) : array {
+        $id = htmlspecialchars($id);
         return Db::queryFetchSingle("SELECT * FROM `pages` WHERE id='$id'");
     }
 
     public static function updagePage($id, $html) : bool {
+        $id = htmlspecialchars($id);
+        $html = htmlspecialchars($html);
         return Db::query("UPDATE `pages` SET html='$html' WHERE id='$id'");
     }
 }

@@ -10,6 +10,7 @@ abstract class ImageService
     public const PATH_TO_PRODUCT_IMAGES = '/public/images/productImages/';
 
     public static function addImage($imagePath) : string | bool {
+        $imagePath = htmlspecialchars($imagePath);
         $id = Db::createNewToken();
         if (!Db::query("INSERT INTO `images` (id, image_path) VALUES ('$id', '$imagePath')")) {
             return false;

@@ -36,6 +36,7 @@ abstract class AdminService
     }
 
     private static function isAdminExists(string $login) : bool {
+        $login = htmlspecialchars($login);
         $logins = Db::queryFetch("SELECT `login` FROM admins WHERE login='$login'");
         return count($logins) > 0;
     }

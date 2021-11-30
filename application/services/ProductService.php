@@ -51,10 +51,12 @@ abstract class ProductService
     }
 
     public static function getProduct($productId) : array {
+        $productId = htmlspecialchars($productId);
         return Db::queryFetchSingle("SELECT * FROM `products` WHERE id='$productId'");
     }
 
     public static function getFullProduct($productId) : array {
+        $productId = htmlspecialchars($productId);
         $product = Db::queryFetchSingle("SELECT * FROM `products` WHERE id='$productId'");
         $productType = self::getProductType($product['product_type_id']);
         $imagePath = ImageService::getImage($product['image_id']);
@@ -77,6 +79,7 @@ abstract class ProductService
     }
 
     public static function getFullProductsByTypeName($typeName) : array {
+        $typeName = htmlspecialchars($typeName);
         $fullProducts = self::getFullProducts();
         $filteredProducts = [];
         foreach ($fullProducts as $product) {
@@ -88,10 +91,12 @@ abstract class ProductService
     }
 
     public static function deleteProduct($id) : bool {
+        $id = htmlspecialchars($id);
         return Db::query("DELETE FROM `products` WHERE id='$id'");
     }
 
     public static function getProductType($id) : array {
+        $id = htmlspecialchars($id);
         return Db::queryFetchSingle("SELECT * FROM `product_types` WHERE id='$id'");
     }
 
